@@ -42,10 +42,8 @@ async function play() {
     await Tone.start();
 
     const
-        vibrato = new Tone.Vibrato(5, 0.1).toDestination(),
-        highPass = new Tone.Filter(100, 'highpass').connect(vibrato),
-        echo = new Tone.FeedbackDelay(0.25, 0.2).connect(highPass),
-        chorus = new Tone.Chorus(2, 2.4, 1.2).connect(echo),
+        highPass = new Tone.Filter(100, 'highpass').toDestination(),
+        chorus = new Tone.Chorus(2, 2.4, 1.2).connect(highPass),
 
         leadSampler = new Tone.Sampler({
             urls: {
@@ -62,14 +60,14 @@ async function play() {
     leadSampler.volume.value = -8;
     leadSampler.connect(chorus);
 
+    chorus.start();
+
     transport.scheduleRepeat(
         time => leadSampler.triggerAttackRelease(Tone.Frequency(50, 'midi'), 2, time, 1),
         '2n'
     );
 
     transport.start();
-
-    chorus.start();
 }
 
 let
