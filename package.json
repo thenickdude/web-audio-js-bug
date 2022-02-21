@@ -1,0 +1,17 @@
+{
+  "name": "musicplayer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@descript/web-audio-js": "^0.15.3-patched.5",
+    "standardized-audio-context": "^24.1.5",
+    "tone": "^14.7.40"
+  },
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "type": "module"
+}
